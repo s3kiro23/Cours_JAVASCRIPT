@@ -1,0 +1,178 @@
+*, ::after, ::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: "Indie flower";
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: antiquewhite;
+    height: 100vh;
+}
+
+.miam {
+    position: absolute;
+    background-color: lightcyan;
+    border-radius: 10px;
+    width: 100px;
+    height: 30px;
+    right: 400px;
+}
+
+.ice-scream {
+    width: 15em;
+    height: 10em;
+    background-color: red;
+    border-top-left-radius: 140px;
+    border-top-right-radius: 140px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.crocs {
+    position: absolute;
+    top: 10px;
+    width: 120px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: antiquewhite;
+}
+
+.crocs2 {
+    position: absolute;
+    top: 30px;
+    right: 510px;
+    width: 170px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: antiquewhite;
+    transform: rotate(20deg);
+}
+
+.under-scream {
+    width: 15em;
+    height: 2em;
+    background-color: aliceblue;
+    border-radius: 50px;
+}
+
+.cornet{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5em;
+    width: 13em;
+    height: 20em;
+    background-color: burlywood;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+    border-bottom-right-radius: 10px;
+}
+
+
+.gauffres1{
+    display: flex;
+    width: 25em;
+    height: 30px;
+    background-color: brown;
+    transform: rotate(25deg);
+}
+.gauffres2{
+    display: flex;
+    width: 25em;
+    height: 30px;
+    background-color: brown;
+    transform: rotate(-25deg);
+}
+.gauffres3 {
+    width: 25em;
+    height: 30px;
+    background-color: brown;
+    transform: rotate(25deg);
+}
+.gauffres4 {
+    width: 25em;
+    height: 30px;
+    background-color: brown;
+    transform: rotate(-25deg);
+}
+.gauffres5 {
+    width: 25em;
+    height: 30px;
+    background-color: brown;
+    transform: rotate(25deg);
+}
+
+.gauffres6 {
+    width: 25em;
+    height: 30px;
+    background-color: brown;
+    transform: rotate(-25deg);
+}
+
+.gauffres7 {
+    width: 25em;
+    height: 30px;
+    background-color: brown;
+    transform: rotate(25deg);
+}
+
+.gauffres8 {
+    width: 25em;
+    height: 30px;
+    background-color: brown;
+    transform: rotate(-25deg);
+}
+
+.selector-container{
+    border-radius: 10px;
+    position: absolute;
+    z-index: 2;
+    left: 200px;
+    bottom: 150px;
+}
+
+.parfum {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.colors{
+    display: table-cell;
+    width: 50px;
+    height: 50px;
+    margin: 0 1px;
+    cursor: pointer;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+.clr1 {
+    background-color: chocolate;
+
+}
+
+.clr2 {
+    background-color:lightgoldenrodyellow;
+}
+.clr3 {
+    background-color: lightgreen;
+}
+.clr4 {
+    background-color: lightcoral;
+}
+.clr5 {
+    background-color: lightpink;
+}
+.clr6 {
+    background-color: violet;
+}
+
