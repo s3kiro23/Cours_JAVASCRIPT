@@ -8,13 +8,8 @@ body, html {
     font-family: "Indie flower";
 }
 
-.main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.bg-main {
     background-color: antiquewhite;
-    height: 100vh;
 }
 
 .miam {
@@ -129,14 +124,6 @@ body, html {
     height: 30px;
     background-color: brown;
     transform: rotate(-25deg);
-}
-
-.selector-container{
-    border-radius: 10px;
-    position: absolute;
-    z-index: 2;
-    left: 200px;
-    bottom: 150px;
 }
 
 .parfum {

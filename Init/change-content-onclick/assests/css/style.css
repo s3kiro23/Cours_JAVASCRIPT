@@ -1,0 +1,50 @@
+*, ::after, ::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: aliceblue;
+    padding: 50px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.tab-content{
+    display: none;
+}
+
+.tabs-content .active {
+    display: block;
+    padding: 20px;
+    box-shadow: 0 1px 3px;
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+.tabs li{
+    float: left;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.tabs::after{
+    display: table;
+    content: '';
+    clear: both;
+}
+
+.tabs a{
+    display: inline-block;
+    padding: 10px 15px;
+    box-shadow: 0 1px 3px;
+}
+
+.tabs .active a {
+    color: #FF0000;
+    background-color: white;
+}

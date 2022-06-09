@@ -1,0 +1,11 @@
+.spoiler {
+    display: block;
+}
+
+.spoiler-content {
+    display: none;
+}
+
+.spoiler-content.visible {
+    display: block;
+}

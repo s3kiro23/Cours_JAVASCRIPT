@@ -5,48 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="src/script.js" async></script>
-    <link rel="stylesheet" href="assests/css/style.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="src/assests/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="src/assests/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="src/assests/favicon/favicon-16x16.png">
-    <link rel="manifest" href="src/assests/favicon/site.webmanifest">
-    <link rel="mask-icon" href="src/assests/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="assests/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assests/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assests/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assests/favicon/site.webmanifest">
+    <link rel="mask-icon" href="assests/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="assests/css/style.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap"
         rel="stylesheet"
     />
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+        rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" 
+        crossorigin="anonymous">
     <title>IceScream</title>
 </head>
-<body>
-    <div class="main">
-        <div class="selector-container">
-            <div class="parfum">
-                <span id="1" onclick="color(this)" class="colors clr1"></span>
-                <span>Chocolat</span>
-            </div>
-            <div class="parfum">
-                <span id="2" onclick="color(this)" class="colors clr2"></span>
-                <span>Vanille</span>
-            </div>
-            <div class="parfum">
-                <span onclick="color(this)" class="colors clr3"></span>
-                <span>Menthe</span>
-            </div>
-            <div class="parfum">
-                <span onclick="color(this)" class="colors clr4"></span>
-                <span>Framboise</span>
-            </div>
-            <div class="parfum">
-                <span onclick="color(this)" class="colors clr5"></span>
-                <span>Fraise</span>
-            </div>
-            <div class="parfum">
-                <span onclick="color(this)" class="colors clr6"></span>
-                <span>Cassis</span>
+<body class="bg-main">
+    <div class="container d-flex flex-column align-items-center justify-content-center">
+        <div class="container">
+            <div class="row">
+                <div class="parfum">
+                    <span id="1" onclick="color(this)" class="colors clr1"></span>
+                    <span>Chocolat</span>
+                </div>
+                <div class="parfum">
+                    <span id="2" onclick="color(this)" class="colors clr2"></span>
+                    <span>Vanille</span>
+                </div>
+                <div class="parfum">
+                    <span onclick="color(this)" class="colors clr3"></span>
+                    <span>Menthe</span>
+                </div>
+                <div class="parfum">
+                    <span onclick="color(this)" class="colors clr4"></span>
+                    <span>Framboise</span>
+                </div>
+                <div class="parfum">
+                    <span onclick="color(this)" class="colors clr5"></span>
+                    <span>Fraise</span>
+                </div>
+                <div class="parfum">
+                    <span onclick="color(this)" class="colors clr6"></span>
+                    <span>Cassis</span>
+                </div>
             </div>
         </div>
         <div id="3" class="ice-scream">
