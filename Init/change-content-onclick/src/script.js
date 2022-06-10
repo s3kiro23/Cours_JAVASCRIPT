@@ -19,7 +19,7 @@
             li.classList.add('active');
             div.querySelector('.tabs-content .active').classList.remove('active');
             div.querySelector(a.getAttribute('href')).classList.add('active');
-    }
+        }
     
 })()
 
