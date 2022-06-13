@@ -24,6 +24,9 @@ button {
 }
 
 .info {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 1px 3px;

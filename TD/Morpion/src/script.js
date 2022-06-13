@@ -9,13 +9,30 @@ let cases = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 (function state(){
 
     for (let i = 0; i < board.length; i++){
-        board[i].addEventListener('click', function(e){
-            draw(board[i])
+        board[i].addEventListener('click', function(){
             if (rounds%2 == 0){
-                cases[i] = 'X';
+                if (player[1] == cases[i] || player[2] == cases[i]){
+                    console.log('Case déjà jouée !');
+                }
+                else{
+                    draw(board[i]);
+                    cases[i] = 'X';
+                    if (is_player_win() == player[1]){
+                        show_winner.innerHTML = "Le joueur 1 gagne !"
+                    }                   
+                }
             }
             else{
-                cases[i] = 'O';
+                if (player[1] == cases[i] || player[2] == cases[i]){
+                    console.log('Case déjà jouée !');
+                }
+                else{
+                    draw(board[i]);
+                    cases[i] = 'O';
+                    if (is_player_win() == player[2]){
+                        show_winner.innerHTML = "Le joueur 2 gagne !"
+                    }
+                }
             }
             console.log(cases)
             show_rounds.innerHTML = "Tour : "+rounds
@@ -28,6 +45,70 @@ let cases = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 function is_player_win(){
 
 
+    if (cases[0] == player[1] && cases[1] == player[1] && cases[2] == player[1]){
+        console.log("Le joueur 1 gagne !");
+        return player[1]
+    }
+    else if (cases[0] == player[2] && cases[1] == player[2] && cases[2] == player[2]){
+        console.log("Le joueur 2 gagne !")
+        return player[2]
+    }
+    if (cases[3] == player[1] && cases[4] == player[1] && cases[5] == player[1]){
+        console.log("Le joueur 1 gagne !")
+        return player[1]
+    }
+    else if (cases[3] == player[2] && cases[4] == player[2] && cases[5] == player[2]){
+        console.log("Le joueur 2 gagne !")
+        return player[2]
+    }
+    if (cases[6] == player[1] && cases[7] == player[1] && cases[8] == player[1]){
+        console.log("Le joueur 1 gagne !")
+        return player[1]
+    }
+    else if (cases[6] == player[2] && cases[7] == player[2] && cases[8] == player[2]){
+        console.log("Le joueur 2 gagne !")
+        return player[2]
+    }
+    if (cases[0] == player[1] && cases[3] == player[1] && cases[6] == player[1]){
+        console.log("Le joueur 1 gagne !")
+        return player[1]
+    }
+    else if (cases[0] == player[2] && cases[3] == player[2] && cases[6] == player[2]){
+        console.log("Le joueur 2 gagne !")
+        return player[2]
+    }
+    if (cases[1] == player[1] && cases[4] == player[1] && cases[7] == player[1]){
+        console.log("Le joueur 1 gagne !")
+        return player[1]
+    }
+    else if (cases[1] == player[2] && cases[4] == player[2] && cases[7] == player[2]){
+        console.log("Le joueur 2 gagne !")
+        return player[2]
+    }
+    if (cases[2] == player[1] && cases[5] == player[1] && cases[8] == player[1]){
+        console.log("Le joueur 1 gagne !")
+        return player[1]
+    }
+    else if (cases[2] == player[2] && cases[5] == player[2] && cases[8] == player[2]){
+        console.log("Le joueur 2 gagne !")
+        return player[2]
+    }
+    if (cases[0] == player[1] && cases[4] == player[1] && cases[8] == player[1]){
+        console.log("Le joueur 1 gagne !")
+        return player[1]
+    }
+    else if (cases[0] == player[2] && cases[4] == player[2] && cases[8] == player[2]){
+        console.log("Le joueur 2 gagne !")
+        return player[2]
+    }
+    if (cases[2] == player[1] && cases[4] == player[1] && cases[6] == player[1]){
+        console.log("Le joueur 1 gagne !")
+        return player[1]
+    }
+    else if (cases[2] == player[2] && cases[4] == player[2] && cases[6] == player[2]){
+        console.log("Le joueur 2 gagne !")
+        return player[2]
+    }
 }
 
 // # change mode
@@ -55,6 +136,7 @@ function restart(){
             rounds = 0;
             cases = [0, 0, 0, 0, 0, 0, 0, 0, 0];
             show_rounds.innerHTML = "Tour : " + rounds;
+            show_winner.innerHTML = ""
         }
     }
 }
