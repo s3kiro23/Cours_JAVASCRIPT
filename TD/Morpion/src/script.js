@@ -3,7 +3,7 @@ let rounds = 0;
 let show_rounds = document.getElementById('rounds');
 let show_winner = document.getElementById('winner');
 let player = {"1" : 'X', "2" : 'O'};
-let shapes_cases = {};
+let cases = [0, 0, 0, 0, 0, 0, 0, 0, 0];
  
 // # check board
 (function state(){
@@ -11,6 +11,13 @@ let shapes_cases = {};
     for (let i = 0; i < board.length; i++){
         board[i].addEventListener('click', function(e){
             draw(board[i])
+            if (rounds%2 == 0){
+                cases[i] = 'X';
+            }
+            else{
+                cases[i] = 'O';
+            }
+            console.log(cases)
             show_rounds.innerHTML = "Tour : "+rounds
         })
     }
@@ -20,24 +27,23 @@ let shapes_cases = {};
 
 function is_player_win(){
 
-if 
 
 }
 
 // # change mode
 function change_mode(){
     let mode = document.getElementById('mode');
-
-    mode.addEventListener('click', function(e){
-
-        if (mode.innerHTML == 'PvP'){
-            this.innerHTML = 'Player vs IA';
-        }
-        else{
-            this.innerHTML = 'PvP';
-        }
-    })
+    
+    if (mode.innerHTML == 'PvP'){
+        mode.innerHTML = 'Player vs IA';
+    }
+    else{
+        mode.innerHTML = 'PvP';
+    }
 }
+
+
+
 
 // # method restart
 function restart(){
@@ -47,6 +53,7 @@ function restart(){
             var ctx = board[i].getContext('2d');
             ctx.clearRect(0,0,100,100);
             rounds = 0;
+            cases = [0, 0, 0, 0, 0, 0, 0, 0, 0];
             show_rounds.innerHTML = "Tour : " + rounds;
         }
     }
@@ -65,7 +72,6 @@ function draw(c){
             ctx.moveTo(10,90);
             ctx.lineTo(90,10);
             ctx.stroke();
-            
             rounds+=1;
             console.log("Tour : "+rounds);
         }
