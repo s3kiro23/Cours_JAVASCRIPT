@@ -14,28 +14,33 @@
     </div>
     <div id="board">
         <div class="row1">
-            <canvas id="case1" class="col1" width="100px" height="100px"></canvas>
-            <canvas id="case2" class="col2" width="100px" height="100px"></canvas>
-            <canvas id="case3" class="col3" width="100px" height="100px"></canvas>
+            <canvas id="case1" class="cases" width="100px" height="100px"></canvas>
+            <canvas id="case2" class="cases" width="100px" height="100px"></canvas>
+            <canvas id="case3" class="cases" width="100px" height="100px"></canvas>
         </div>
         <div class="row2">
-            <canvas id="case4" class="col1" width="100px" height="100px"></canvas>
-            <canvas id="case5" class="col2" width="100px" height="100px"></canvas>
-            <canvas id="case6" class="col3"width="100px" height="100px"></canvas>
+            <canvas id="case4" class="cases" width="100px" height="100px"></canvas>
+            <canvas id="case5" class="cases" width="100px" height="100px"></canvas>
+            <canvas id="case6" class="cases" width="100px" height="100px"></canvas>
         </div>
         <div class="row3">
-            <canvas id="case7" class="col1" width="100px" height="100px"></canvas>
-            <canvas id="case8" class="col2" width="100px" height="100px"></canvas>
-            <canvas id="case9" class="col3" width="100px" height="100px"></canvas>
+            <canvas id="case7" class="cases" width="100px" height="100px"></canvas>
+            <canvas id="case8" class="cases" width="100px" height="100px"></canvas>
+            <canvas id="case9" class="cases" width="100px" height="100px"></canvas>
         </div>
     </div>
     <div class="button">
-        <button onclick="restart();" id="restart">Restart</button>
+        <button onclick="restart();" id="restart">New game</button>
         <button onclick="change_mode();" id="mode">PvP</button>
     </div>
     <div class="info">
+        <div class="info-players">
+            <span class="p1">P1 =</span>
+            <span class="p2">P2 =</span>
+        </div>
         <span id="rounds"></span>
         <span id="winner"></span>
     </div>
+    <!-- <canvas id="sh" class="shape"></canvas> -->
 </body>
 </html>
