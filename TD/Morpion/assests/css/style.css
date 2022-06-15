@@ -49,6 +49,10 @@ button {
     gap: 2em;
 }
 
+.player{
+    color: blue;
+}
+
 .p1::after{
     content: ' X';
     color: blue;
@@ -59,11 +63,11 @@ button {
     color: red;
 }
 
-.winning-cases{
+.winningCases{
     background-color: lightseagreen;
 }
 
-#winner {
+.winner {
     color: lightseagreen;
 }
 

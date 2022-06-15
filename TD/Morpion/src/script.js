@@ -1,173 +1,239 @@
-let board = document.querySelectorAll('canvas');
 let main_board = document.getElementById('board');
-let rounds = 0;
+var board = document.querySelectorAll('canvas');
+let turn = document.getElementById('playerTurn');
 let show_rounds = document.getElementById('rounds');
 let show_winner = document.getElementById('winner');
-let player = {"1" : 'X', "2" : 'O'};
 let cases = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+let player = {"1" : 'X', "2" : 'O'};
+let rounds = 0;
 let win = false;
+let pve = false;
  
 // # check board
 (function state(){
-    
 
     for (let i = 0; i < board.length; i++){
         board[i].addEventListener('click', function(){
-            if (!win){
-                if (rounds%2 == 0){
+
+            if (pve){
+                if (!win){
                     if (cases[i] != 0){
                         console.log('Case déjà jouée !');
                     }
                     else{
+                        turn.innerHTML = "C'est au tour du "+'<span style="color:blue">Joueur 1</span>';
                         draw(board[i]);
                         cases[i] = 'X';
                         if (is_player_win() == player[1]){
-                            show_winner.innerHTML = "Le joueur 1 gagne !"
-                            win = true
+                            turn.innerHTML = "Le joueur 1 gagne !";
+                            turn.classList.add('winner');
+                            win = true;
                         }                   
                     }
-                }
-                else{
-                    if (cases[i] != 0){
-                        console.log('Case déjà jouée !');
+                    if (!win){
+                        turn.innerHTML = "C'est au tour du "+'<span style="color:blue">Joueur 1</span>'
+                        let j = findBestMove();
+                        if (cases[j] != 0){
+                            console.log('Case déjà jouée !');
+                        }
+                        else{
+                            draw(board[j]);
+                            console.log(rounds)
+                            cases[j] = 'O';
+                            if (is_player_win() == player[2]){
+                                turn.innerHTML = "L'IA gagne !"
+                                turn.classList.add('winner')
+                                win = true
+                            }
+                        }
+                        console.log(cases)
                     }
-                    else{
-                        draw(board[i]);
-                        cases[i] = 'O';
-                        if (is_player_win() == player[2]){
-                            show_winner.innerHTML = "Le joueur 2 gagne !"
-                            win = true
+                    show_rounds.innerHTML = "Tour : "+rounds
+                }
+            }
+            else {
+                if (!win){
+                    if (rounds%2 == 0){
+                        if (cases[i] != 0){
+                            console.log('Case déjà jouée !');
+                            turn.innerHTML = '<span style="color:red"; "font-weight:bold">Case déjà jouée !</span>';
+                        }
+                        else{
+                            draw(board[i]);
+                            cases[i] = 'X';
+                            turn.innerHTML = "C'est au tour du "+'<span style="color:red">Joueur 2</span>';
+                            if (is_player_win() == player[1]){
+                                turn.innerHTML = "Le joueur 1 gagne !";
+                                turn.classList.add('winner');
+                                win = true;
+                            }                   
                         }
                     }
-                }
-                console.log(cases)
+                    else{
+                        if (cases[i] != 0){
+                            console.log('Case déjà jouée !');
+                            turn.innerHTML = '<span style="color:red"; "font-weight:bold">Case déjà jouée !</span>';
+                        }
+                        else{
+                            draw(board[i]);
+                            cases[i] = 'O';
+                            turn.innerHTML = "C'est au tour du "+'<span style="color:blue">Joueur 1</span>'
+                            if (is_player_win() == player[2]){
+                                turn.innerHTML = "Le joueur 2 gagne !"
+                                turn.classList.add('winner')
+                                win = true
+                            }
+                        }
+                    }
+                    console.log(cases)
+                } 
                 show_rounds.innerHTML = "Tour : "+rounds
-            }
+            } 
         })
     }
 })()
+
+// # method play
+
+// function play(){
+
+//     for (let i = 0; i < board.length; i++){
+//         board[i].addEventListener('click', function(){
+
+//         })
+//     }
+// }
 
 // # check if winner
 
 function is_player_win(){
 
+    let row1 = document.querySelectorAll('#case1, #case2, #case3');
+    let row2 = document.querySelectorAll('#case4, #case5, #case6');
+    let row3 = document.querySelectorAll('#case7, #case8, #case9');
+    let col1 = document.querySelectorAll('#case1, #case4, #case7');
+    let col2 = document.querySelectorAll('#case2, #case5, #case8');
+    let col3 = document.querySelectorAll('#case3, #case6, #case9');
+    let diag1 = document.querySelectorAll('#case1, #case5, #case9');
+    let diag2 = document.querySelectorAll('#case3, #case5, #case7');
 
     if (cases[0] == player[1] && cases[1] == player[1] && cases[2] == player[1]){
         console.log("Le joueur 1 gagne !");
-        document.getElementById('case1').classList.add('winning-cases');
-        document.getElementById('case2').classList.add('winning-cases');
-        document.getElementById('case3').classList.add('winning-cases');
+        for (let casesToFilled of row1){
+            casesToFilled.classList.add('winningCases')
+        }
         return player[1]
     }
     else if (cases[0] == player[2] && cases[1] == player[2] && cases[2] == player[2]){
         console.log("Le joueur 2 gagne !")
-        document.getElementById('case1').classList.add('winning-cases');
-        document.getElementById('case2').classList.add('winning-cases');
-        document.getElementById('case3').classList.add('winning-cases');
+        for (let casesToFilled of row1){
+            casesToFilled.classList.add('winningCases')
+        }
         return player[2]
     }
     if (cases[3] == player[1] && cases[4] == player[1] && cases[5] == player[1]){
         console.log("Le joueur 1 gagne !")
-        document.getElementById('case4').classList.add('winning-cases');
-        document.getElementById('case5').classList.add('winning-cases');
-        document.getElementById('case6').classList.add('winning-cases');
+        for (let casesToFilled of row2){
+            casesToFilled.classList.add('winningCases')
+        }
         return player[1]
     }
     else if (cases[3] == player[2] && cases[4] == player[2] && cases[5] == player[2]){
         console.log("Le joueur 2 gagne !")
-        document.getElementById('case4').classList.add('winning-cases');
-        document.getElementById('case5').classList.add('winning-cases');
-        document.getElementById('case6').classList.add('winning-cases');
+        for (let casesToFilled of row2){
+            casesToFilled.classList.add('winningCases')
+        }
         return player[2]
     }
     if (cases[6] == player[1] && cases[7] == player[1] && cases[8] == player[1]){
         console.log("Le joueur 1 gagne !")
-        document.getElementById('case7').classList.add('winning-cases');
-        document.getElementById('case8').classList.add('winning-cases');
-        document.getElementById('case9').classList.add('winning-cases');
+        for (let casesToFilled of row3){
+            casesToFilled.classList.add('winningCases')
+        }
         return player[1]
     }
     else if (cases[6] == player[2] && cases[7] == player[2] && cases[8] == player[2]){
         console.log("Le joueur 2 gagne !")
-        document.getElementById('case7').classList.add('winning-cases');
-        document.getElementById('case8').classList.add('winning-cases');
-        document.getElementById('case9').classList.add('winning-cases');
+        for (let casesToFilled of row3){
+            casesToFilled.classList.add('winningCases')
+        }
         return player[2]
     }
     if (cases[0] == player[1] && cases[3] == player[1] && cases[6] == player[1]){
         console.log("Le joueur 1 gagne !")
-        document.getElementById('case1').classList.add('winning-cases');
-        document.getElementById('case4').classList.add('winning-cases');
-        document.getElementById('case7').classList.add('winning-cases');
+        for (let casesToFilled of col1){
+            casesToFilled.classList.add('winningCases')
+        }
         return player[1]
     }
     else if (cases[0] == player[2] && cases[3] == player[2] && cases[6] == player[2]){
         console.log("Le joueur 2 gagne !")
-        document.getElementById('case1').classList.add('winning-cases');
-        document.getElementById('case4').classList.add('winning-cases');
-        document.getElementById('case7').classList.add('winning-cases');
+         for (let casesToFilled of col1){
+            casesToFilled.classList.add('winningCases')
+        }
         return player[2]
     }
     if (cases[1] == player[1] && cases[4] == player[1] && cases[7] == player[1]){
         console.log("Le joueur 1 gagne !")
-        document.getElementById('case2').classList.add('winning-cases');
-        document.getElementById('case5').classList.add('winning-cases');
-        document.getElementById('case8').classList.add('winning-cases');
+        for (let casesToFilled of col2){
+            casesToFilled.classList.add('winningCases')
+        }
         return player[1]
     }
     else if (cases[1] == player[2] && cases[4] == player[2] && cases[7] == player[2]){
         console.log("Le joueur 2 gagne !")
-        document.getElementById('case2').classList.add('winning-cases');
-        document.getElementById('case5').classList.add('winning-cases');
-        document.getElementById('case8').classList.add('winning-cases');
+        for (let casesToFilled of col2){
+            casesToFilled.classList.add('winningCases')
+        }
         return player[2]
     }
     if (cases[2] == player[1] && cases[5] == player[1] && cases[8] == player[1]){
         console.log("Le joueur 1 gagne !")
-        document.getElementById('case3').classList.add('winning-cases');
-        document.getElementById('case6').classList.add('winning-cases');
-        document.getElementById('case9').classList.add('winning-cases');
+        for (let casesToFilled of col3){
+            casesToFilled.classList.add('winningCases')
+        }
         return player[1]
     }
     else if (cases[2] == player[2] && cases[5] == player[2] && cases[8] == player[2]){
         console.log("Le joueur 2 gagne !")
-        document.getElementById('case3').classList.add('winning-cases');
-        document.getElementById('case6').classList.add('winning-cases');
-        document.getElementById('case9').classList.add('winning-cases');
+        for (let casesToFilled of col3){
+            casesToFilled.classList.add('winningCases')
+        }
         return player[2]
     }
     if (cases[0] == player[1] && cases[4] == player[1] && cases[8] == player[1]){
         console.log("Le joueur 1 gagne !")
-        document.getElementById('case1').classList.add('winning-cases');
-        document.getElementById('case5').classList.add('winning-cases');
-        document.getElementById('case9').classList.add('winning-cases');
+        for (let casesToFilled of diag1){
+            casesToFilled.classList.add('winningCases')
+        }
         return player[1]
     }
     else if (cases[0] == player[2] && cases[4] == player[2] && cases[8] == player[2]){
         console.log("Le joueur 2 gagne !")
-        document.getElementById('case1').classList.add('winning-cases');
-        document.getElementById('case5').classList.add('winning-cases');
-        document.getElementById('case9').classList.add('winning-cases');
+        for (let casesToFilled of diag1){
+            casesToFilled.classList.add('winningCases')
+        }
         return player[2]
     }
     if (cases[2] == player[1] && cases[4] == player[1] && cases[6] == player[1]){
         console.log("Le joueur 1 gagne !")
-        document.getElementById('case3').classList.add('winning-cases');
-        document.getElementById('case5').classList.add('winning-cases');
-        document.getElementById('case7').classList.add('winning-cases');
+        for (let casesToFilled of diag2){
+            casesToFilled.classList.add('winningCases')
+        }
         return player[1]
     }
     else if (cases[2] == player[2] && cases[4] == player[2] && cases[6] == player[2]){
         console.log("Le joueur 2 gagne !")
-        document.getElementById('case3').classList.add('winning-cases');
-        document.getElementById('case5').classList.add('winning-cases');
-        document.getElementById('case7').classList.add('winning-cases');
+        for (let casesToFilled of diag2){
+            casesToFilled.classList.add('winningCases')
+        }
         return player[2]
     }
 
     if (rounds >= 9){
         console.log("Match nul !")
-        show_winner.innerHTML = "Match nul !"
+        turn.innerHTML = "Match nul !"
+        win = true
     }
 }
 
@@ -177,11 +243,14 @@ function change_mode(){
     
     if (mode.innerHTML == 'PvP'){
         mode.innerHTML = 'PvE';
+        pve = true
         
     }
     else{
         mode.innerHTML = 'PvP';
+        pve = false
     }
+    restart();
 }
 
 // # method restart
@@ -194,17 +263,13 @@ function restart(){
             rounds = 0;
             win = false
             cases = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-            document.getElementById('case1').classList.remove('winning-cases');
-            document.getElementById('case2').classList.remove('winning-cases');
-            document.getElementById('case3').classList.remove('winning-cases');
-            document.getElementById('case4').classList.remove('winning-cases');
-            document.getElementById('case5').classList.remove('winning-cases');
-            document.getElementById('case6').classList.remove('winning-cases');
-            document.getElementById('case7').classList.remove('winning-cases');
-            document.getElementById('case8').classList.remove('winning-cases');
-            document.getElementById('case9').classList.remove('winning-cases');
+            let filledCases = document.querySelectorAll('canvas[id^="case"]');
+            for (let casesToEmpty of filledCases){
+                casesToEmpty.classList.remove('winningCases');
+            }
             show_rounds.innerHTML = "Tour : " + rounds;
-            show_winner.innerHTML = ""
+            turn.innerHTML = ""
+            turn.classList.remove('winner')
         }
     }
 }
@@ -215,6 +280,7 @@ function draw(c){
     if (rounds%2 == 0){
         if (c.getContext){
             var ctx = c.getContext('2d');
+            ctx.lineWidth = 5
             ctx.beginPath();
             ctx.strokeStyle = 'rgb(0, 0, 255)';
             ctx.moveTo(10,10);
@@ -229,6 +295,7 @@ function draw(c){
     else{
         if (c.getContext){
         var ctx = c.getContext('2d');
+        ctx.lineWidth = 5
         ctx.beginPath();
         ctx.strokeStyle ='rgb(255, 0, 0)';
         ctx.arc(50,50,40,0,2 * Math.PI);
@@ -240,9 +307,9 @@ function draw(c){
 }
 
  //Partie IA
- let p = 4;  //valeur donné a l'ordinateur dans le tableau de jeu
- let opponent = 1; //valeur donné au joueur dans le tableau de jeu
- let b = [];
+ let p = 'O';  //valeur donné a l'ordinateur dans le tableau de jeu
+ let opponent = 'X'; //valeur donné au joueur dans le tableau de jeu
+ let b = [[0,0,0],[0,0,0],[0,0,0]];
  for (let i = 0; i<3;i++){
      for(let j = 0; j<3;j++){
          b[i][j] = cases[i*3+j]
@@ -281,7 +348,7 @@ function draw(c){
 
 function minmax(b,depth,isMax)
 {
- //console.log('minmax',depth,isMax,b)
+//  console.log('minmax')
 
  score = evaluate(b);
  if(score === 10)
