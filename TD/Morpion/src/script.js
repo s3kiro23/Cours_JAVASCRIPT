@@ -8,6 +8,7 @@ let player = {"1" : 'X', "2" : 'O'};
 let rounds = 0;
 let win = false;
 let pve = false;
+let turnP = false;
  
 // # check board
 (function state(){
@@ -18,10 +19,13 @@ let pve = false;
             if (pve){
                 if (!win){
                     if (cases[i] != 0){
-                        console.log('Case déjà jouée !');
+                        console.log('Case déjà jouée ! Joueur');
+                        turn.innerHTML = '<span style="color:red"; "font-weight:bold">Case déjà jouée !</span>';
+                        turnP = false;
                     }
                     else{
-                        turn.innerHTML = "C'est au tour du "+'<span style="color:blue">Joueur 1</span>';
+                        turnP = true;
+                        console.log('Le joueur a joué')
                         draw(board[i]);
                         cases[i] = 'X';
                         if (is_player_win() == player[1]){
@@ -30,7 +34,7 @@ let pve = false;
                             win = true;
                         }                   
                     }
-                    if (!win){
+                    if (!win && turnP){
                         turn.innerHTML = "C'est au tour du "+'<span style="color:blue">Joueur 1</span>'
                         let j = findBestMove();
                         if (cases[j] != 0){
